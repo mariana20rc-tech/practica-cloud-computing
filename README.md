@@ -1,16 +1,17 @@
-# Práctica de Cloud Computing
+# Practica de Cloud Computing
 
-## Descripción
-Proyecto universitario para implementar y administrar
-servicios de computación en la nube utilizando Google Cloud.
+## Descripcion
+
+Proyecto universitario para implementar y administrar servicios de computacion en la nube utilizando Google Cloud Platform (GCP).
 
 ## Herramientas
+
 - Google Cloud Platform
 - Git
 - GitHub
 - Visual Studio Code
 
 ## Objetivo
-Desplegar una aplicación en la nube aplicando
-servicios de infraestructura, almacenamiento,
-contenedores, automatización y monitorización.
+
+Desplegar una aplicacion en la nube aplicando servicios de infraestructura, almacenamiento, contenedores, automatizacion y monitorizacion.
+
