@@ -1,10 +1,35 @@
 steps:
+  # Construir imagen Docker
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/project-cc6fddba-917e-4559-89a/repo-cloud-practica/practica-flask:v1'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/repo-cloud-practica/practica-flask:$BUILD_ID'
       - '.'
 
-images:
-  - 'us-central1-docker.pkg.dev/project-cc6fddba-917e-4559-89a/repo-cloud-practica/practica-flask:v1'
+  # Publicar imagen en Artifact Registry
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/repo-cloud-practica/practica-flask:$BUILD_ID'
+
+  # Desplegar en Cloud Run Staging
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'practica-flask-staging'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/$PROJECT_ID/repo-cloud-practica/practica-flask:$BUILD_ID'
+      - '--region'
+      - 'us-central1'
+      - '--platform'
+      - 'managed'
+      - '--service-account'
+      - '703231080636-compute@developer.gserviceaccount.com'
+      - '--allow-unauthenticated'
+      - '--quiet'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
