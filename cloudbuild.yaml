@@ -1,0 +1,10 @@
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/project-cc6fddba-917e-4559-89a/repo-cloud-practica/practica-flask:v1'
+      - '.'
+
+images:
+  - 'us-central1-docker.pkg.dev/project-cc6fddba-917e-4559-89a/repo-cloud-practica/practica-flask:v1'
